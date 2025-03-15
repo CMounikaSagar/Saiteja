@@ -60,6 +60,7 @@ class DoctorAvailabilityAPIView(APIView):
             context["success"] = 0
             context["message"] = str(e)
 
+        print(request.data)
         return Response(context, status=status.HTTP_201_CREATED if context["success"] else status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk):

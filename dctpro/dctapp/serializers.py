@@ -18,6 +18,24 @@ class DoctorAvailabilitySerializer(serializers.ModelSerializer):
         model = DoctorAvailability
         fields = "__all__"
 
+    def validate_d_department(self, value):
+        """Convert department name to ID"""
+        try:
+            department = speciality.objects.get(name=value)
+        except speciality.DoesNotExist:
+            raise serializers.ValidationError("Department not found")
+        return department  # Return department instance instead of name
+
+    def create(self, validated_data):
+        """Handle department instance conversion during creation"""
+        validated_data["d_department"] = self.validate_d_department(validated_data["d_department"])
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        """Handle department instance conversion during update"""
+        if "d_department" in validated_data:
+            validated_data["d_department"] = self.validate_d_department(validated_data["d_department"])
+        return super().update(instance,validated_data)
     
     
    
