@@ -50,7 +50,7 @@ class DoctorAvailabilityAPIView(APIView):
             serializer = DoctorAvailabilitySerializer(data=request.data)
             if not serializer.is_valid():
                 raise ValidationError(serializer.errors)
-
+            print(serializer.errors)
             doctor = serializer.save()
             context["data"] = DoctorAvailabilitySerializer(doctor).data
         except ValidationError as e:
