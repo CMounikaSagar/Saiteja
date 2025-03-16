@@ -3,6 +3,7 @@ from .models import *
 from .validators import validate_email
 
 class DoctorAvailabilitySerializer(serializers.ModelSerializer):
+    d_department = serializers.CharField()
     d_department_name = serializers.CharField(source="d_department.name", read_only=True)
     d_email = serializers.EmailField(
         max_length=255,

@@ -47,4 +47,6 @@ class DoctorAvailability(models.Model):
         
     def __str__(self):
         return self.d_department.name
+    
+    
 

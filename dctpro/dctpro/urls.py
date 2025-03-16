@@ -21,5 +21,5 @@ from dctapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
      path('doctors-ui/', include('dctapp.urls')),  # This is for the Django template
-    path('api/', include('dctapp.urls')),  # This is for the API
+    path('api/', include('dctapp.urls'),name='doctor-create'),  # This is for the API
 ]
